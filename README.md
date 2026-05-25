@@ -8,7 +8,7 @@ A browser-based management interface for someone who lives on the moon and manag
 
 ## Requirements
 
-- Windows 10/11
+- Windows 10/11 or Linux (Bash environment)
 - Python 3.10 or newer (tested on 3.14)
 - Go 1.25 or newer on `PATH` *(needed to build the `lunar-base-grant` shim; without it stages 1+ won't work)*
 - A working [Lunar Tear](https://github.com/Walter-Sparrow/lunar-tear) checkout at the sibling path `..\lunar-tear\`
@@ -33,6 +33,7 @@ NierRein Repos\
 ```bat
 setup.bat
 ```
+*(On Linux, run `./setup.sh` instead)*
 
 Creates a virtual environment in `.venv\` and installs Python dependencies from `web\requirements.txt`. Re-run any time dependencies change or after pulling new shim sources.
 
@@ -41,6 +42,7 @@ Creates a virtual environment in `.venv\` and installs Python dependencies from 
 ```bat
 run-lunar-base.bat
 ```
+*(On Linux, run `./run-lunar-base.sh` instead)*
 
 Then open **http://127.0.0.1:8888** in your browser. Press `Ctrl+C` in the terminal to stop the server.
 
@@ -55,7 +57,7 @@ Stages 1+ (currency / costume / weapon / upgrade / memoir editors) require two t
 - **Master data tables** decoded from the encrypted `.bin.e` to JSON.
 - **English display names** extracted from lunar-tear's text-bundle revisions.
 
-`setup.bat` handles both automatically on first run. Subsequent runs detect existing output and skip.
+`setup.bat` (or `setup.sh`) handles both automatically on first run. Subsequent runs detect existing output and skip.
 
 | Step | Output directory | Source |
 |------|-----------------|--------|
@@ -64,7 +66,7 @@ Stages 1+ (currency / costume / weapon / upgrade / memoir editors) require two t
 
 Both output directories are gitignored and together hold ~700 JSON files.
 
-> If the game's data ever changes (a server-side patch), redump by deleting `data\masterdata\` and `data\names\`, then re-running `setup.bat`.
+> If the game's data ever changes (a server-side patch), redump by deleting `data\masterdata\` and `data\names\`, then re-running `setup.bat` / `setup.sh`.
 
 ### Manual fallback
 
@@ -114,7 +116,7 @@ lunar-base\
 │   ├── extract_names.py       Resolves entity IDs to English names from lunar-tear's text bundles
 │   └── grant\
 │       ├── src\               Go source for the lunar-base-grant shim
-│       └── grant.exe          Compiled binary (built by setup.bat, gitignored)
+│       └── grant.exe          Compiled binary (built by setup script, gitignored. Named `grant` on Linux)
 └── data\         Gitignored — master-data JSON, name maps, and DB backups
 ```
 
