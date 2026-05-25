@@ -64,7 +64,7 @@ class BatchOutcome:
 def _ensure_shim_available() -> None:
     if not config.GRANT_EXE_PATH.exists():
         raise GrantError(
-            f"grant.exe not found at {config.GRANT_EXE_PATH}. "
+            f"{config.GRANT_EXE_NAME} not found at {config.GRANT_EXE_PATH}. "
             "Run setup.bat to build it (Go must be on PATH)."
         )
 

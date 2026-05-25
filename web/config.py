@@ -19,7 +19,9 @@ BACKUP_DIR: Path = DATA_DIR / "backups"
 MASTERDATA_DIR: Path = DATA_DIR / "masterdata"
 NAMES_DIR: Path = DATA_DIR / "names"
 
-GRANT_EXE_PATH: Path = ROOT / "tools" / "grant" / "grant.exe"
+import os
+GRANT_EXE_NAME = "grant.exe" if os.name == 'nt' else "grant"
+GRANT_EXE_PATH: Path = ROOT / "tools" / "grant" / GRANT_EXE_NAME
 
 
 def find_master_data_bin() -> Path | None:
